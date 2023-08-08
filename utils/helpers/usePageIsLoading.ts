@@ -1,15 +1,15 @@
-// External libraries
+// Imports
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Watches for page load.
  *
  * @returns A boolean representing if a new page is being loaded or not.
  */
-export function usePageIsLoading() {
+export default function usePageIsLoading() {
   const router = useRouter();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     router.events.on("routeChangeStart", () => setLoading(true));

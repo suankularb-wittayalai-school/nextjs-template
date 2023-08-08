@@ -1,13 +1,21 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+// Imports
+import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
+
+/**
+ * TailwindCSS configuration.
+ */
+const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     // Shadow
     boxShadow: {
+      none: "none",
       1: "var(--shadow-1)",
       2: "var(--shadow-2)",
       3: "var(--shadow-3)",
@@ -25,6 +33,7 @@ module.exports = {
 
     // Rounded corners
     borderRadius: {
+      none: "var(--rounded-none)",
       xs: "var(--rounded-xs)",
       sm: "var(--rounded-sm)",
       md: "var(--rounded-md)",
@@ -62,7 +71,10 @@ module.exports = {
     // Font family
     fontFamily: {
       display: "var(--font-display)",
-      sans: "var(--font-body)",
+      body: "var(--font-body)",
+      print: "var(--font-print)",
+      mono: "var(--font-mono)",
+      icon: "var(--font-icon)",
     },
 
     // Breakpoints
@@ -215,7 +227,20 @@ module.exports = {
         outline: "var(--outline)",
         "outline-variant": "var(--outline-variant)",
       },
+
+      // Border width
+      borderWidth: {
+        1: "1px",
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(function ({ addVariant }) {
+      addVariant("state-layer", ["&::before", "&>span:empty"]);
+    }),
+  ],
 };
+
+export default config;
+
