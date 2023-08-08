@@ -1,13 +1,7 @@
-// External libraries
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-
-import { Trans, useTranslation } from "next-i18next";
-
-import { FC, ReactNode, useState } from "react";
-
-// SK Components
+// Imports
+import cn from "@/utils/helpers/cn";
+import usePageIsLoading from "@/utils/helpers/usePageIsLoading";
+import { useSnackbar } from "@/utils/helpers/useSnackbar";
 import {
   MaterialIcon,
   NavBar,
@@ -15,36 +9,30 @@ import {
   NavDrawer,
   NavDrawerItem,
   NavDrawerSection,
-  PageHeader,
   Progress,
   RootLayout,
   Snackbar,
+  Text,
 } from "@suankularb-components/react";
+import { Trans, useTranslation } from "next-i18next";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FC, ReactNode, useState } from "react";
 
-// Internal components
-import Favicon from "@/components/Favicon";
-
-// Utilities
-import { usePageIsLoading } from "@/utils/routing";
-import { useSnackbar } from "@/utils/snackbar";
-import { CustomPage } from "@/utils/types";
-
-const Layout: FC<
-  { children: ReactNode } & Pick<CustomPage, "fab" | "pageHeader" | "childURLs">
-> = ({ children, fab, pageHeader, childURLs }) => {
-  // Translation
-  const { t } = useTranslation([
-    "common",
-    ...(typeof pageHeader?.title === "object" && "ns" in pageHeader?.title
-      ? [(pageHeader.title as { ns: string }).ns]
-      : []),
-  ]);
+/**
+ * A Root Layout with persistent components.
+ * 
+ * @param children The content of the page.
+ * 
+ * @returns A Root Layout.
+ */
+const Layout: FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useTranslation("common");
 
   // Navigation Bar and Drawer
   const router = useRouter();
-  const [navOpen, setNavOpen] = useState<boolean>(false);
-
-  const getIsSelected = (pattern: RegExp) => pattern.test(router.pathname);
+  const [navOpen, setNavOpen] = useState(false);
 
   // Root Layout
   const pageIsLoading = usePageIsLoading();
@@ -59,14 +47,20 @@ const Layout: FC<
         {/* Top-level pages */}
         <NavDrawerSection
           header={
-            <div className="skc-headline-small !tracking-tighter">
-              <Trans i18nKey="brand.logoText" ns="common">
-                <span>SK </span>
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text font-bold text-transparent">
-                  แม่แบบ Next.js
-                </span>
-              </Trans>
-            </div>
+            <Text type="headline-small" className="!tracking-tighter">
+              <Trans
+                i18nKey="brand.logoText"
+                ns="common"
+                components={[
+                  <span key={0} />,
+                  <span
+                    key={1}
+                    className={cn(`bg-gradient-to-r from-primary to-secondary
+                      bg-clip-text font-bold text-transparent`)}
+                  />,
+                ]}
+              />
+            </Text>
           }
           alt="SK Components"
         >
@@ -107,52 +101,35 @@ const Layout: FC<
             alt=""
           />
         }
-        fab={fab}
         onNavToggle={() => setNavOpen(true)}
       >
         <NavBarItem
           icon={<MaterialIcon icon="home" />}
           label={t("navigation.home")}
-          selected={getIsSelected(/^\/$/)}
+          selected={/^\/$/.test(router.asPath)}
           href="/"
           element={Link}
         />
         <NavBarItem
           icon={<MaterialIcon icon="login" />}
           label={t("navigation.login")}
-          selected={getIsSelected(/^\/account\/login/)}
+          selected={/^\/account\/login/.test(router.asPath)}
           href="/account/login"
           element={Link}
         />
         <NavBarItem
           icon={<MaterialIcon icon="info" />}
           label={t("navigation.about")}
-          selected={getIsSelected(/^\/about/)}
+          selected={/^\/about/.test(router.asPath)}
           href="/about"
           element={Link}
         />
       </NavBar>
 
-      {/* Page Header */}
-      {pageHeader && (
-        <PageHeader
-          brand={<Favicon />}
-          homeURL="/"
-          buttonElement={Link}
-          onNavToggle={() => setNavOpen(true)}
-          {...pageHeader}
-          title={
-            typeof pageHeader.title === "object" && "ns" in pageHeader.title
-              ? t(pageHeader.title.key, { ns: pageHeader.title.ns })
-              : pageHeader.title
-          }
-        />
-      )}
-
       {/* Page loading indicator */}
       <Progress
         appearance="linear"
-        alt="Loading page…"
+        alt={t("pageIsLoading")}
         visible={pageIsLoading}
       />
 

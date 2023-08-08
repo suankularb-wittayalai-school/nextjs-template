@@ -1,57 +1,37 @@
-// External libraries
-import Image from "next/image";
-import Head from "next/head";
-
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
-// SK Components
+// Imports
+import PageHeader from "@/components/PageHeader";
+import { LangCode } from "@/utils/types/common";
 import {
   ContentLayout,
   Header,
-  MaterialIcon,
   Section,
+  Text,
 } from "@suankularb-components/react";
+import { GetStaticProps, NextPage } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-// Types
-import { CustomPage, LangCode } from "@/utils/types";
-
-// Page
-const IndexPage: CustomPage = () => {
-  const { t } = useTranslation(["home", "common"]);
+const IndexPage: NextPage = () => {
+  const { t } = useTranslation("home");
 
   return (
     <>
-      <Head>
-        <title>{t("brand.name", { ns: "common" })}</title>
-      </Head>
+      <PageHeader>{t("title")}</PageHeader>
       <ContentLayout>
-        <Image
-          src="/images/home/banner.png"
-          width={1141}
-          height={285}
-          priority
-          alt=""
-          className="w-full sm:rounded-lg"
-        />
         <Section>
           <Header>{t("welcome.title")}</Header>
-          <p className="skc-body-medium">{t("welcome.desc")}</p>
+          <Text type="body-medium">{t("welcome.desc")}</Text>
         </Section>
       </ContentLayout>
     </>
   );
 };
 
-export const getStaticProps = async ({ locale }: { locale: LangCode }) => ({
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["common", "home"])),
+    ...(await serverSideTranslations(locale as LangCode, ["common", "home"])),
   },
 });
 
-IndexPage.pageHeader = {
-  title: { key: "title", ns: "home" },
-  icon: <MaterialIcon icon="waving_hand" />,
-};
-
 export default IndexPage;
+

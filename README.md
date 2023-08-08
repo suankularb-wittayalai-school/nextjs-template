@@ -71,13 +71,13 @@ const Example: FC = () => {
 
 ### Tailwind CSS
 
-This template uses Tailwind CSS. To add styles, add utility classes directly to your page or component. Try not to add to `./src/styles/global.css`.
+This template uses Tailwind CSS. To add styles, add utility classes directly to your page or component. Try not to add to `./styles/global.css`.
 
 You can find all SKCom tokens in the `tailwind.config.js` file. These can be used in place of the default preset tokens; for example, `bg-primary` sets the background to the default primary color of SKCom (`#00658f`, or `#80cfff` in dark mode).
 
 ### Internationalization
 
-This template, by default, supports American English (`en-US`) and Thai (`th`). To add a language, update `./next-i18next.config.js`, update `LangCode` in `./src/utils/types/common.ts`, and add a folder in `./public/static/locales` for your translation files.
+This template, by default, supports American English (`en-US`) and Thai (`th`). To add a language, update `./next-i18next.config.js`, update `LangCode` in `./utils/types/common.ts`, and add a folder in `./public/static/locales` for your translation files.
 
 Some components in ReSKCom have parts that need translation. You can pass the language via the `locale` prop.
 

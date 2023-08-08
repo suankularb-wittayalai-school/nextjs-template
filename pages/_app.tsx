@@ -1,6 +1,12 @@
-// External libraries
+// Imports
+import Layout from "@/components/Layout";
+import AppStateContext from "@/contexts/AppStateContext";
+import SnackbarContext from "@/contexts/SnackbarContext";
+import "@/styles/globals.css";
+import { ThemeProvider } from "@suankularb-components/react";
 import { MotionConfig } from "framer-motion";
-
+import { appWithTranslation } from "next-i18next";
+import { AppProps } from "next/app";
 import {
   Fira_Code,
   IBM_Plex_Sans_Thai,
@@ -9,25 +15,7 @@ import {
   Space_Grotesk,
 } from "next/font/google";
 import localFont from "next/font/local";
-
-import { appWithTranslation } from "next-i18next";
-
 import { FC, ReactNode, useState } from "react";
-
-// SK Components
-import { ThemeProvider } from "@suankularb-components/react";
-
-// Internal components
-import Layout from "@/components/Layout";
-
-// Contexts
-import SnackbarContext from "@/contexts/SnackbarContext";
-
-// Styles
-import "@/styles/globals.css";
-
-// Utilities
-import { CustomAppProps } from "@/utils/types";
 
 // English fonts
 const bodyFontEN = Inter({ subsets: ["latin"] });
@@ -63,18 +51,19 @@ const iconFont = localFont({
  */
 const Contexts: FC<{ children: ReactNode }> = ({ children }) => {
   const [snackbar, setSnackbar] = useState<JSX.Element | null>(null);
+  const [navOpen, setNavOpen] = useState(false);
 
   return (
+    // Add more contexts here as your app grows
     <SnackbarContext.Provider value={{ snackbar, setSnackbar }}>
-      {/* Add more contexts here */}
-      {children}
+      <AppStateContext.Provider value={{ navOpen, setNavOpen }}>
+        {children}
+      </AppStateContext.Provider>
     </SnackbarContext.Provider>
   );
 };
 
-function App({ Component, pageProps }: CustomAppProps) {
-  const { fab, pageHeader, childURLs } = Component;
-
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <style jsx global>{`
@@ -89,10 +78,14 @@ function App({ Component, pageProps }: CustomAppProps) {
         }
       `}</style>
 
+      {/* Context providers */}
       <Contexts>
+        {/* Framer Motion a11y */}
         <MotionConfig reducedMotion="user">
+          {/* SKCom variables */}
           <ThemeProvider>
-            <Layout {...{ fab, pageHeader, childURLs }}>
+            {/* Rendered app */}
+            <Layout>
               <Component {...pageProps} />
             </Layout>
           </ThemeProvider>
@@ -103,3 +96,4 @@ function App({ Component, pageProps }: CustomAppProps) {
 }
 
 export default appWithTranslation(App);
+

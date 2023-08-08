@@ -1,16 +1,12 @@
-// External libraries
-import { useContext, useState, useEffect } from "react";
-
-// Internal components
-import { SnackbarProps } from "@suankularb-components/react";
-
-// Contexts
+// Imports
 import SnackbarContext from "@/contexts/SnackbarContext";
+import { SnackbarProps } from "@suankularb-components/react";
+import { useContext, useEffect, useState } from "react";
 
 /**
  * This hook interacts with the {@link SnackbarContext Snackbar Context}. The
  * returns can be used to control a Snackbar at Root Layout.
- * 
+ *
  * @returns
  * `snackbarOpen` — If the Snackbar should be open;
  * `setSnackbarOpen` — Sets the state that should control if the Snackbar is open;
@@ -44,7 +40,7 @@ export function useSnackbar() {
       clearTimeout(exitWait);
       clearTimeout(visibilityTimer);
     };
-  });
+  }, [snackbar]);
 
   return {
     /**
