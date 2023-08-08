@@ -20,6 +20,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, ReactNode, useState } from "react";
 
+/**
+ * A Root Layout with persistent components.
+ * 
+ * @param children The content of the page.
+ * 
+ * @returns A Root Layout.
+ */
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useTranslation("common");
 
