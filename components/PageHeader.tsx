@@ -3,6 +3,7 @@ import AppStateContext from "@/contexts/AppStateContext";
 import useLocale from "@/utils/helpers/useLocale";
 import {
   AppDrawer,
+  AppDrawerSegment,
   PageHeader as BasePageHeader,
   PageHeaderProps,
 } from "@suankularb-components/react";
@@ -27,8 +28,10 @@ const PageHeader: FC<
   return (
     <BasePageHeader
       appDrawer={
-        <AppDrawer>
-          {/* If this app belongs to a family of apps, add them here */}
+        <AppDrawer locale={locale}>
+          <AppDrawerSegment title="TODO">
+            {/* If this app belongs to a family of apps, add them here */}
+          </AppDrawerSegment>
         </AppDrawer>
       }
       locale={locale}
