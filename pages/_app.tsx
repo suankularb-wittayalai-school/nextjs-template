@@ -1,5 +1,6 @@
 // Imports
 import Layout from "@/components/Layout";
+import AppStateContext from "@/contexts/AppStateContext";
 import SnackbarContext from "@/contexts/SnackbarContext";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@suankularb-components/react";
@@ -50,11 +51,14 @@ const iconFont = localFont({
  */
 const Contexts: FC<{ children: ReactNode }> = ({ children }) => {
   const [snackbar, setSnackbar] = useState<JSX.Element | null>(null);
+  const [navOpen, setNavOpen] = useState(false);
 
   return (
     // Add more contexts here as your app grows
     <SnackbarContext.Provider value={{ snackbar, setSnackbar }}>
-      {children}
+      <AppStateContext.Provider value={{ navOpen, setNavOpen }}>
+        {children}
+      </AppStateContext.Provider>
     </SnackbarContext.Provider>
   );
 };
