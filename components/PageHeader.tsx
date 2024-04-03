@@ -1,12 +1,15 @@
-// Imports
 import AppStateContext from "@/contexts/AppStateContext";
+import Logo from "@/public/images/logo.svg";
 import useLocale from "@/utils/helpers/useLocale";
 import {
   AppDrawer,
+  AppDrawerItem,
   AppDrawerSegment,
   PageHeader as BasePageHeader,
   PageHeaderProps,
 } from "@suankularb-components/react";
+import { useTranslation } from "next-i18next";
+import Image from "next/image";
 import Link from "next/link";
 import { FC, useContext } from "react";
 
@@ -23,6 +26,8 @@ const PageHeader: FC<
   Pick<PageHeaderProps, "children"> & Partial<PageHeaderProps>
 > = (props) => {
   const locale = useLocale();
+  const { t: tx } = useTranslation("common");
+
   const { setNavOpen } = useContext(AppStateContext);
 
   return (
@@ -31,6 +36,11 @@ const PageHeader: FC<
         <AppDrawer locale={locale}>
           <AppDrawerSegment title="TODO">
             {/* If this app belongs to a family of apps, add them here */}
+            <AppDrawerItem
+              logo={<Image src={Logo} alt="" />}
+              name={tx("appName")}
+              href="#"
+            />
           </AppDrawerSegment>
         </AppDrawer>
       }
