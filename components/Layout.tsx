@@ -1,4 +1,3 @@
-// Imports
 import cn from "@/utils/helpers/cn";
 import usePageIsLoading from "@/utils/helpers/usePageIsLoading";
 import { useSnackbar } from "@/utils/helpers/useSnackbar";
@@ -15,7 +14,6 @@ import {
   Text,
 } from "@suankularb-components/react";
 import { Trans, useTranslation } from "next-i18next";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, ReactNode, useState } from "react";
@@ -49,7 +47,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
           header={
             <Text type="headline-small" className="!tracking-tighter">
               <Trans
-                i18nKey="brand.logoText"
+                i18nKey="logoText"
                 ns="common"
                 components={[
                   <span key={0} />,
@@ -62,7 +60,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
               />
             </Text>
           }
-          alt="SK Components"
+          alt={t("appName")}
         >
           <NavDrawerItem
             icon={<MaterialIcon icon="home" />}
@@ -91,18 +89,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
       </NavDrawer>
 
       {/* Navigation Bar/Rail */}
-      <NavBar
-        brand={
-          <Image
-            src="/images/logo.svg"
-            priority
-            width={56}
-            height={56}
-            alt=""
-          />
-        }
-        onNavToggle={() => setNavOpen(true)}
-      >
+      <NavBar onNavToggle={() => setNavOpen(true)}>
         <NavBarItem
           icon={<MaterialIcon icon="home" />}
           label={t("navigation.home")}
