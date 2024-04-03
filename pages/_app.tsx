@@ -1,4 +1,3 @@
-// Imports
 import Layout from "@/components/Layout";
 import AppStateContext from "@/contexts/AppStateContext";
 import SnackbarContext from "@/contexts/SnackbarContext";
@@ -68,8 +67,8 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <style jsx global>{`
         :root {
-          --font-body: -apple-system, BlinkMacSystemFont,
-            ${bodyFontEN.style.fontFamily}, ${bodyFontTH.style.fontFamily};
+          --font-body: ${bodyFontEN.style.fontFamily},
+            ${bodyFontTH.style.fontFamily};
           --font-display: ${displayFontEN.style.fontFamily},
             ${displayFontTH.style.fontFamily};
           --font-mono: ui-monospace, SFMono-Regular, SF Mono,
