@@ -1,4 +1,3 @@
-// Imports
 import PageHeader from "@/components/PageHeader";
 import { LangCode } from "@/utils/types/common";
 import {
@@ -34,4 +33,3 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 });
 
 export default IndexPage;
-

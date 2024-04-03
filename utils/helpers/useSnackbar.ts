@@ -1,4 +1,3 @@
-// Imports
 import SnackbarContext from "@/contexts/SnackbarContext";
 import { SnackbarProps } from "@suankularb-components/react";
 import { useContext, useEffect, useState } from "react";

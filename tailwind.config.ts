@@ -1,4 +1,3 @@
-// Imports
 import type { Config } from "tailwindcss";
 import plugin from "tailwindcss/plugin";
 
@@ -235,7 +234,6 @@ const config: Config = {
     },
   },
   plugins: [
-    require("@tailwindcss/typography"),
     plugin(function ({ addVariant }) {
       addVariant("state-layer", ["&::before", "&>span:empty"]);
     }),
@@ -243,4 +241,3 @@ const config: Config = {
 };
 
 export default config;
-
