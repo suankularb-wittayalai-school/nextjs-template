@@ -1,22 +1,10 @@
-import cn from "@/utils/helpers/cn";
+import NavBar from "@/components/NavBar";
+import NavDrawer from "@/components/NavDrawer";
 import usePageIsLoading from "@/utils/helpers/usePageIsLoading";
 import { useSnackbar } from "@/utils/helpers/useSnackbar";
-import {
-  MaterialIcon,
-  NavBar,
-  NavBarItem,
-  NavDrawer,
-  NavDrawerItem,
-  NavDrawerSection,
-  Progress,
-  RootLayout,
-  Snackbar,
-  Text,
-} from "@suankularb-components/react";
-import { Trans, useTranslation } from "next-i18next";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { FC, ReactNode, useState } from "react";
+import { Progress, RootLayout, Snackbar } from "@suankularb-components/react";
+import { useTranslation } from "next-i18next";
+import { FC, ReactNode } from "react";
 
 /**
  * A Root Layout with persistent components.
@@ -28,90 +16,14 @@ import { FC, ReactNode, useState } from "react";
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useTranslation("common");
 
-  // Navigation Bar and Drawer
-  const router = useRouter();
-  const [navOpen, setNavOpen] = useState(false);
-
-  // Root Layout
   const pageIsLoading = usePageIsLoading();
-
-  // Snackbar
   const { snackbarOpen, setSnackbarOpen, snackbarProps } = useSnackbar();
 
   return (
     <RootLayout>
-      {/* Navigation Drawer */}
-      <NavDrawer open={navOpen} onClose={() => setNavOpen(false)}>
-        {/* Top-level pages */}
-        <NavDrawerSection
-          header={
-            <Text type="headline-small" className="!tracking-tighter">
-              <Trans
-                i18nKey="logoText"
-                ns="common"
-                components={[
-                  <span key={0} />,
-                  <span
-                    key={1}
-                    className={cn(`bg-gradient-to-r from-primary to-secondary
-                      bg-clip-text font-bold text-transparent`)}
-                  />,
-                ]}
-              />
-            </Text>
-          }
-          alt={t("appName")}
-        >
-          <NavDrawerItem
-            icon={<MaterialIcon icon="home" />}
-            label={t("navigation.home")}
-            selected={router.pathname === "/"}
-            href="/"
-            element={Link}
-          />
-          <NavDrawerItem
-            icon={<MaterialIcon icon="login" />}
-            label={t("navigation.login")}
-            selected={router.pathname === "/account/login"}
-            href="/account/login"
-            element={Link}
-          />
-          <NavDrawerItem
-            icon={<MaterialIcon icon="info" />}
-            label={t("navigation.about")}
-            selected={router.pathname === "/about"}
-            href="/about"
-            element={Link}
-          />
-        </NavDrawerSection>
-
-        {/* Insert more Navigation Drawer Sections as your app expand. */}
-      </NavDrawer>
-
-      {/* Navigation Bar/Rail */}
-      <NavBar onNavToggle={() => setNavOpen(true)}>
-        <NavBarItem
-          icon={<MaterialIcon icon="home" />}
-          label={t("navigation.home")}
-          selected={/^\/$/.test(router.asPath)}
-          href="/"
-          element={Link}
-        />
-        <NavBarItem
-          icon={<MaterialIcon icon="login" />}
-          label={t("navigation.login")}
-          selected={/^\/account\/login/.test(router.asPath)}
-          href="/account/login"
-          element={Link}
-        />
-        <NavBarItem
-          icon={<MaterialIcon icon="info" />}
-          label={t("navigation.about")}
-          selected={/^\/about/.test(router.asPath)}
-          href="/about"
-          element={Link}
-        />
-      </NavBar>
+      {/* Navigation */}
+      <NavDrawer />
+      <NavBar />
 
       {/* Page loading indicator */}
       <Progress
