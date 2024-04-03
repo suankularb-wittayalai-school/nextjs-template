@@ -7,7 +7,7 @@ import { CSSProperties, FC } from "react";
 export enum LangCode {
   th = "th",
   enUS = "en-US",
-};
+}
 
 /**
  * A function component stylable through `className` and `style`.
