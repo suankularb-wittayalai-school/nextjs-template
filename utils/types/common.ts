@@ -4,7 +4,10 @@ import { CSSProperties, FC } from "react";
 /**
  * The language code of a supported UI language.
  */
-export type LangCode = "en-US" | "th";
+export enum LangCode {
+  th = "th",
+  enUS = "en-US",
+};
 
 /**
  * A function component stylable through `className` and `style`.
