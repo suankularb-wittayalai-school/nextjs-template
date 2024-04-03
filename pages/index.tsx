@@ -1,6 +1,8 @@
 import PageHeader from "@/components/PageHeader";
 import { LangCode } from "@/utils/types/common";
 import {
+  Card,
+  CardContent,
   ContentLayout,
   Header,
   Section,
@@ -19,7 +21,13 @@ const IndexPage: NextPage = () => {
       <ContentLayout>
         <Section>
           <Header>{t("welcome.title")}</Header>
-          <Text type="body-medium">{t("welcome.desc")}</Text>
+          <Card appearance="outlined" className="!rounded-xl !bg-surface-3">
+            <CardContent className="items-center">
+              <Text type="body-large" className="max-w-md text-center">
+                {t("welcome.desc")}
+              </Text>
+            </CardContent>
+          </Card>
         </Section>
       </ContentLayout>
     </>
