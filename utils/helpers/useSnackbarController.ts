@@ -1,4 +1,3 @@
-// Imports
 import SnackbarContext from "@/contexts/SnackbarContext";
 import { SnackbarProps } from "@suankularb-components/react";
 import { useContext, useEffect, useState } from "react";
@@ -12,7 +11,7 @@ import { useContext, useEffect, useState } from "react";
  * `setSnackbarOpen` — Sets the state that should control if the Snackbar is open;
  * `snackbarProps` — The current props for Snackbar.
  */
-export function useSnackbar() {
+export function useSnackbarController() {
   const { snackbar } = useContext(SnackbarContext);
   const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
   const [snackbarProps, setSnackbarProps] = useState<SnackbarProps>();

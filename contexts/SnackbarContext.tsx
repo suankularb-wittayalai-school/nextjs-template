@@ -1,4 +1,3 @@
-// External libraries
 import { createContext } from "react";
 
 /**
