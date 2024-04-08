@@ -21,7 +21,10 @@ const IndexPage: NextPage = () => {
       <ContentLayout>
         <Section>
           <Header>{t("welcome.title")}</Header>
-          <Card appearance="outlined" className="!rounded-xl !bg-surface-3">
+          <Card
+            appearance="outlined"
+            className="!rounded-xl !bg-surface-container"
+          >
             <CardContent className="items-center">
               <Text type="body-large" className="max-w-md text-center">
                 {t("welcome.desc")}
