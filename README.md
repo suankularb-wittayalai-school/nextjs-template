@@ -16,7 +16,7 @@ npm i
 
 ### Prettier
 
-This template uses Prettier to format files. Install Prettier on your code editor and ensure it is the default formatter. Prettier should detect the configuration file `.prettierrc.json`.
+This template uses Prettier to format files. Install Prettier on your code editor and ensure it is the default formatter. Prettier should detect the configuration file `.prettierrc`.
 
 ## Development
 
@@ -49,19 +49,19 @@ setSnackbar(<Snackbar>Task failed successfully</Snackbar>);
 
 ### Framer Motion
 
-This template uses Framer Motion for animation. When using animation in a page or component, make sure to use the `transition` function and the `useAnimationConfig` hook. You can import those from `@suankularb-components/react`.
+This template uses Framer Motion for animation. When using animation in a page or component, make sure to use the `transition` function and the `DURATION` and `EASING` constants. You can import those from `@suankularb-components/react`.
 
-An example of using Framer Motion with `transition` and `useAnimationConfig`:
+An example of using Framer Motion with `transition` and the `DURATION` and `EASING` constants:
 
 ```tsx
-const Example: FC = () => {
-  const { duration, easing } = useAnimationConfig();
+import { DURATION, EASING, transition } from "@suankularb-components/react";
 
+const Example: FC = () => {
   return (
     <motion.p
       initial={{ rotate: 180 }}
       animate={{ rotate: 0 }}
-      transition={transition(duration.short4, easing.standard)}
+      transition={transition(DURATION.short4, EASING.standard)}
     >
       Hello Framer!
     </motion.p>
@@ -73,7 +73,7 @@ const Example: FC = () => {
 
 This template uses Tailwind CSS. To add styles, add utility classes directly to your page or component. Try not to add to `./styles/global.css`.
 
-You can find all SKCom tokens in the `tailwind.config.js` file. These can be used in place of the default preset tokens; for example, `bg-primary` sets the background to the default primary color of SKCom (`#00658f`, or `#80cfff` in dark mode).
+You can find all SKCom tokens in the `tailwind.config.js` file. These can be used in place of the default preset tokens; for example, `bg-primary` sets the background to the default primary color of SKCom (`#216487`, or `#92cef5` in dark mode).
 
 ### Internationalization
 
