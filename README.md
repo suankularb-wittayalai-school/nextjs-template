@@ -77,7 +77,7 @@ You can find all SKCom tokens in the `tailwind.config.js` file. These can be use
 
 ### Internationalization
 
-This template, by default, supports American English (`en-US`) and Thai (`th`). To add a language, update `./next-i18next.config.js`, update `LangCode` in `./utils/types/common.ts`, and add a folder in `./public/static/locales` for your translation files.
+This template, by default, supports American English (`en-US`) and Thai (`th`). To add a language, update `./i18n.js`, update `LangCode` in `./utils/types/common.ts`, and in `./translations` add translation files for the new language.
 
 Some components in ReSKCom have parts that need translation. You can pass the language via the `locale` prop.
 

@@ -4,7 +4,6 @@ import SnackbarContext from "@/contexts/SnackbarContext";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@suankularb-components/react";
 import { MotionConfig } from "framer-motion";
-import { appWithTranslation } from "next-i18next";
 import { AppProps } from "next/app";
 import {
   Fira_Code,
@@ -94,4 +93,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default appWithTranslation(App);
+export default App;

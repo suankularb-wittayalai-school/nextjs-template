@@ -8,10 +8,11 @@ import {
   NavDrawerSection,
   Text,
 } from "@suankularb-components/react";
-import { Trans, useTranslation } from "next-i18next";
+import Trans from "next-translate/Trans";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 /**
  * A list of all destinations within an app.
@@ -34,16 +35,16 @@ const NavDrawer: StylableFC = ({ style, className }) => {
         header={
           <Text type="headline-small" className="!tracking-tighter">
             <Trans
-              i18nKey="logoText"
-              ns="common"
-              components={[
-                <span key={0} />,
-                <span
-                  key={1}
-                  className={cn(`bg-gradient-to-r from-primary to-secondary
-                bg-clip-text font-bold text-transparent`)}
-                />,
-              ]}
+              i18nKey="common:logoText"
+              components={{
+                0: <span />,
+                1: (
+                  <span
+                    className={cn(`bg-gradient-to-r from-primary to-secondary
+                      bg-clip-text font-bold text-transparent`)}
+                  />
+                ),
+              }}
             />
           </Text>
         }

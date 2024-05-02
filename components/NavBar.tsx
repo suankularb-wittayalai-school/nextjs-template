@@ -2,13 +2,13 @@ import AppStateContext from "@/contexts/AppStateContext";
 import { StylableFC } from "@/utils/types/common";
 import {
   NavBar as BaseNavBar,
-  NavBarItem,
   MaterialIcon,
+  NavBarItem,
 } from "@suankularb-components/react";
+import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { useTranslation } from "react-i18next";
 
 /**
  * Navigation Bar allows users to navigate between pages and open the Navigation
