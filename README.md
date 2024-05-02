@@ -1,6 +1,6 @@
 # Suankularb Next.js Template
 
-This repository is a template for all Suankularb websites using the Next.js framework. It includes SK Components, Next.js, Tailwind CSS, Framer Motion, and next-18next internalization solution all configured and ready to use out of the box.
+This repository is a template for all Suankularb websites using the Next.js framework. It includes SK Components, Next.js, Tailwind CSS, Framer Motion, and next-translate all configured and ready to use out of the box.
 
 If you know Next.js, you already know enough to get started. We look forward to see what you’re going to create!
 
