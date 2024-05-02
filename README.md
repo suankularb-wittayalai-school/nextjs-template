@@ -4,7 +4,7 @@ This repository is a template for all Suankularb websites using the Next.js fram
 
 If you know Next.js, you already know enough to get started. We look forward to see what you’re going to create!
 
-> [!NOTE]
+> [!TIP]
 > If you are making a Suankularb website, don’t clone this repository directly. Use the “[Use this template](https://github.com/suankularb-wittayalai-school/sk-nextjs-template/generate)” button.
 
 ## Setup
