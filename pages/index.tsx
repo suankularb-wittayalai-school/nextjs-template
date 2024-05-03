@@ -1,5 +1,4 @@
 import PageHeader from "@/components/PageHeader";
-import { LangCode } from "@/utils/types/common";
 import {
   Card,
   CardContent,
@@ -8,9 +7,8 @@ import {
   Section,
   Text,
 } from "@suankularb-components/react";
-import { GetStaticProps, NextPage } from "next";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextPage } from "next";
+import useTranslation from "next-translate/useTranslation";
 
 const IndexPage: NextPage = () => {
   const { t } = useTranslation("home");
@@ -27,7 +25,7 @@ const IndexPage: NextPage = () => {
           >
             <CardContent className="items-center">
               <Text type="body-large" className="max-w-md text-center">
-                {t("welcome.desc")}
+                {t("welcome.desc", { date: new Date() })}
               </Text>
             </CardContent>
           </Card>
@@ -36,11 +34,5 @@ const IndexPage: NextPage = () => {
     </>
   );
 };
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale as LangCode, ["common", "home"])),
-  },
-});
 
 export default IndexPage;

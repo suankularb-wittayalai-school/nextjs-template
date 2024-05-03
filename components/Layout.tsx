@@ -3,7 +3,7 @@ import NavDrawer from "@/components/NavDrawer";
 import usePageIsLoading from "@/utils/helpers/usePageIsLoading";
 import { useSnackbarController } from "@/utils/helpers/useSnackbarController";
 import { Progress, RootLayout, Snackbar } from "@suankularb-components/react";
-import { useTranslation } from "next-i18next";
+import useTranslation from "next-translate/useTranslation";
 import { FC, ReactNode } from "react";
 
 /**

@@ -8,7 +8,7 @@ import {
   PageHeader as BasePageHeader,
   PageHeaderProps,
 } from "@suankularb-components/react";
-import { useTranslation } from "next-i18next";
+import useTranslation from "next-translate/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, useContext } from "react";
